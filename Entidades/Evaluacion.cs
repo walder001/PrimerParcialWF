@@ -17,7 +17,8 @@ namespace Entidades
 
         public DateTime Fecha { get; set; }
 
-        public List<DetalleEvaluacion> Detalles;
+
+        public virtual List<DetalleEvaluacion> Detalles { get; set; }
 
         public Evaluacion()
         {
