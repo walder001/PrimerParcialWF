@@ -24,14 +24,11 @@
       <li class="active"><a href="#">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Registro <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="~/AnalisisWF.aspx">Analisis</a></li>
-          <li><a href="~/PagoWF.aspx">Pago</a></li>
+          <li><a href="/Registro/rEvaluacionWF.aspx">Analisis</a></li>
         </ul>
       </li>
  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Consulta <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Analisis</a></li>
-          <li><a href="#">Pago</a></li>
         </ul>
       </li>    </ul>
     <ul class="nav navbar-nav navbar-right">
