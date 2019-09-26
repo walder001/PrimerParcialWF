@@ -2,99 +2,120 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <h2>Cards with Contextual Classes</h2>
-    <div class="container">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">Registro de Pago</div>
+  <div class="panel" style="background-color: #0094ff">
+        <div class="panel-heading" style="font-family: Arial Black; font-size: 20px; text-align:center; color: Black">Registro de Usuarios</div>
+    </div>
+    <div class="panel-body">
+        <div class="form-horizontal col-md-12" role="form">
 
-                                <div class="panel-body">
-                                    <div class="form-horizontal col-md-12" role="form">
-                                        <div class ="row">
-                                            <div class ="col-md-3">
-                                              <label for="PagoId" class="col-md-3 control-label input-sm">PagoId</label>
+            <div class="container">
+            <%--UsuarioId--%>
+            <div class="form-group">
+                <label for="UsuarioIdTextBox" class="col-md-3 control-label input-sm" style="font-size: small">Usuario Id</label>
+                <div class="col-md-1 ">
+                    <asp:TextBox ID="UsuarioIdTextBox" runat="server" placeholder="0" class="form-control input-sm" Style="font-size: small" TextMode="Number"></asp:TextBox>
+                </div>
+                <asp:RegularExpressionValidator ID="ValidaID" runat="server" ErrorMessage='Campo "ID" solo acepta numeros' ControlToValidate="UsuarioIdTextBox" ValidationExpression="^[0-9]*" Text="*" ForeColor="Red" Display="Dynamic" ToolTip="Entrada no valida" ValidationGroup="Guardar"></asp:RegularExpressionValidator>
+                <div class="col-md-1 ">
+                    <asp:Button ID="BuscarButton" runat="server" Text="Buscar" class="btn btn-primary" />
+                </div>
+            </div>
 
-                                          </div>
-                                            <div class="col-md-6">
-                                            <asp:TextBox ID="PagoId" CssClass=" form-control " placeholder="PagoId" runat="server" Height="2.5em"></asp:TextBox>
+            <%-- Nombres--%>
+            <div class="form-group">
+                <label for="NombresTextBox" class="col-md-3 control-label input-sm" style="font-size: small" >Nombres</label>
+                <div class="col-md-6">
+                    <asp:TextBox ID="NombresTextBox" runat="server"  onkeypress="return isLetterKey(event)" placeholder="Ej. Juan Perez" class="form-control input-sm" Style="font-size: small"></asp:TextBox>
+                </div>
+                <asp:RequiredFieldValidator ID="Valida" runat="server" ErrorMessage="El campo &quot;Nombres&quot; esta vacio" ControlToValidate="NombresTextBox" ForeColor="Red" Display="Dynamic" ToolTip="Campo Nombres es obligatorio" ValidationGroup="Guardar">*</asp:RequiredFieldValidator>
+            </div>
 
-                                            </div>
-                                            <div class="col-md-3">
-                                                <asp:Button ID="BuscarAnalisis" CssClass=" form-control btn btn-primary" runat="server" Text="Buscar" ValidationGroup="BuscarAnalisis"/>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="PagoId" ErrorMessage="*" ValidationGroup="Buscar"></asp:RequiredFieldValidator>
-                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PagoId" ErrorMessage="Porfavor ingrese un numero" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Buscar"></asp:RegularExpressionValidator>
-                                            
-                                            </div>
-                                           </div>
-                                       
-                                        <%-- Paciente ID --%>
-                                        <div class="form-group">
-                                            <label for="PacienteId" class="col-md-3 control-label input-sm">Paciente</label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="PacienteDropDown" CssClass="form-control input-sm"></asp:DropDownList>
+            <%--Usuario--%>
+            <div class="form-group">
+                <label for="NombreUsuarioTextBox" class="col-md-3 control-label input-sm" style="font-size: small">Usuario</label>
+                <div class="col-md-6">
+                    <asp:TextBox ID="NombreUsuarioTextBox" runat="server"  class="form-control input-sm" Style="font-size: small"></asp:TextBox>
+                </div>
+                <asp:RequiredFieldValidator ID="ValidaUser" runat="server" ControlToValidate="NombreUsuarioTextBox" ForeColor="Red" Display="Dynamic" ValidationGroup="Guardar">*</asp:RequiredFieldValidator>
+            </div>
 
-                                            </div>
-                                        </div> 
-                                        
-                                        <%--Detalle Analisis --%>
-                                        <div class="form-group">
-                                            <label for="DetalleAnalisis" class="col-md-3 control-label input-sm">Analisis</label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="DetalleDropDownList1" CssClass="form-control input-sm" ></asp:DropDownList>
+            <%--Contraseña--%>
+            <div class="form-group">
+                <label for="ContraseñaTextBox" class="col-md-3 control-label input-sm" style="font-size: small">Contraseña</label>
+                <div class="col-md-6">
+                    <asp:TextBox type="password" ID="ContraseñaTextBox" runat="server" class="form-control input-sm" Style="font-size: small"></asp:TextBox>
+                </div>
+                <asp:RequiredFieldValidator ID="ValidaContraseña" runat="server" ErrorMessage="El campo &quot;Contraseña&quot; esta vacio" ControlToValidate="ContraseñaTextBox" ForeColor="Red" Display="Dynamic" ToolTip="Campo Contraseña obligatorio" ValidationGroup="Guardar">*</asp:RequiredFieldValidator>
+            </div>
 
-                                            </div>
-                                        </div>
-                                              <%--Monto Analisis--%>
-                                        <div class="form-group">
-                                            <label for="Monto" class="col-md-3 control-label input-sm">Monto</label>
-                                            <div class="col-md-8">
-                                                <asp:TextBox ID="Monto" CssClass=" form-control " placeholder="Monto" runat="server" Height="2.5em"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Monto" Display="Dynamic" ErrorMessage="Porfavor digite un monto valido..." ValidationGroup="AgregarDetalle">*</asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
+            <%--Confirmar Contraseña--%>
+            <div class="form-group">
+                <label for="ConfirmarContraseñaTextBox" class="col-md-3 control-label input-sm" style="font-size: small">Confirmar Contraseña</label>
+                <div class="col-md-6">
+                    <asp:TextBox type="password" ID="ConfirmarContraseñaTextBox" runat="server" class="form-control input-sm" Style="font-size: small"></asp:TextBox>
+                </div>
+                <asp:CompareValidator ID="ComparaContraseñas" runat="server" ErrorMessage="Las Contraseñas no son iguales" ControlToValidate="ConfirmarContraseñaTextBox" ControlToCompare="ContraseñaTextBox" ForeColor="Red" Display="Dynamic" ToolTip="Las Contraseñas no son iguales" ValidationGroup="Guardar">*</asp:CompareValidator>
+                <asp:RequiredFieldValidator ID="ValidaConfirmarContraseña" runat="server" ErrorMessage="El campo &quot;Nombres&quot; estas vacio" ControlToValidate="ConfirmarContraseñaTextBox" ForeColor="Red" Display="Dynamic" ToolTip="Campo Confirmar Contraseña obligatorio" ValidationGroup="Guardar">*</asp:RequiredFieldValidator>
+            </div>
 
-                                            <%--Monto a pagar--%>
-                                        <div class="form-group">
-                                            <label for="MontoAPagar" class="col-md-3 control-label input-sm">Monto a Pagar</label>
-                                            <div class="col-md-8">
-                                                <asp:TextBox ID="MontoAPagar" CssClass=" form-control " placeholder="MontoAPagar" runat="server" Height="2.5em"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="MontoAPagar" Display="Dynamic" ErrorMessage="Porfavor digite un monto valido..." ValidationGroup="AgregarDetalle">*</asp:RequiredFieldValidator>
-                                                 <asp:Button ID="Button1" runat="server" Text="Cargar Monto" />
-                                                 <asp:Button ID="Pagar" CssClass=" form-control btn btn-primary" runat="server" Text="Agregar" Height="2.5em" ValidationGroup="AgregarDetalle"/>
-                                            </div>
-                                        </div>
-                                            <%--Grid--%>
-                                        <div class="table-responsive">
-                                            <asp:GridView ID="DatosGridView" runat="server" class="table table-condensed  table-responsive" CellPadding="6" ForeColor="#333333" GridLines="None">
-                                                <AlternatingRowStyle BackColor="White" />
-                                                <Columns>
-                                                    <asp:HyperLinkField ControlStyle-ForeColor="#0094ff"
-                                                        HeaderText="Opciones"
-                                                        DataNavigateUrlFields="DetallePagoId"
-                                                        DataNavigateUrlFormatString="/PagoWF.aspx?Id={0}"
-                                                        Text="Eliminar"></asp:HyperLinkField>
-                                                </Columns>
-                                                <HeaderStyle BackColor="#0094ff" Font-Bold="true" ForeColor="black" />
-                                                <RowStyle BackColor="#EFF3FB" />
-                                            </asp:GridView>
-                                        </div>
+            <%--Tipo Usuario--%>
+            <div class="form-group">
+                <label for="TipoUsuarioDropDownList" class="col-md-3 control-label input-sm" style="font-size: small">Tipo Usuario</label>
+                <div class="col-md-6">
+                    <asp:DropDownList ID="TipoUsuarioDropDownList" runat="server" Class="form-control input-sm" Style="font-size: small">
+                        <asp:ListItem Selected="True">Administrador</asp:ListItem>
+                        <asp:ListItem>Cajero</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label for="PacienteId" class="col-md-3 control-label input-sm">Paciente</label>
+                    <div class="col-md-8">
+                        <asp:DropDownList runat="server" ID="PacienteDropDown" CssClass="form-control input-sm"></asp:DropDownList>
 
+                    </div>
+                </div> 
+                <div class="table-responsive">
+                    <asp:GridView ID="DatosGridView" runat="server" class="table table-condensed  table-responsive" CellPadding="6" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:HyperLinkField ControlStyle-ForeColor="#0094ff"
+                                HeaderText="Opciones"
+                                DataNavigateUrlFields="DetallePagoId"
+                                DataNavigateUrlFormatString="/PagoWF.aspx?Id={0}"
+                                Text="Eliminar"></asp:HyperLinkField>
+                        </Columns>
+                        <HeaderStyle BackColor="#0094ff" Font-Bold="true" ForeColor="black" />
+                        <RowStyle BackColor="#EFF3FB" />
+                    </asp:GridView>
+                </div>
+            <%--Total Vendido--%>
+            <div class="form-group">
+                <label for="TotalVendidoTextBox" class="col-md-3 control-label input-sm" style="font-size: small">Total Ventas</label>
+                <div class="col-md-6">
+                    <asp:TextBox  ID="TotalVendidoTextBox" runat="server" class="form-control input-sm" Style="font-size: small" ReadOnly="true"></asp:TextBox>
+                </div>
+            </div>
 
-                                    </div>
+            <%--Fecha--%>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <asp:TextBox ID="FechaTextBox" TextMode="Date" runat="server" class="form-control input-sm" Style="font-size: small" Visible="false"></asp:TextBox>
+                </div>
+            </div>
+            <br />
 
-                                </div>
-                                <%-- Botones --%>
-                                <div class="panel-footer">
-                                    <div class="text-center">
-                                        <div class="form-group" style="display: inline-block">
-                                            <asp:Button ID="LimpiarTipoAnalisis" CssClass=" col-md-4 col-sm-4 btn btn-primary" runat="server" Text="Limpiar" Height="2.5em" Width="10em" />
-                                            <asp:Button ID="GuardarTipoAnalisis" CssClass="col-md-4 col-sm-4 btn btn-success" runat="server" Text="Guardar" Height="2.5em" Width="10em" ValidationGroup="AgregarNuevo"  />
-                                            <asp:Button ID="EliminarTipoAnalisis" CssClass="col-md-4 col-sm-4 btn btn-danger" runat="server" Text="Eliminar" Height="2.5em" Width="10em" ValidationGroup="Eliminar" />
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" CssClass="col-md-1 col-sm-1" runat="server" ControlToValidate="PagoId" ErrorMessage="Es necesario elegir un Presupuesto valido para eliminar" ValidationGroup="Eliminar">Porfavor elige un Presupuesto valido.</asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" CssClass="col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1" runat="server" ControlToValidate="PagoId" ErrorMessage="RegularExpressionValidator" ValidationExpression="\d+ " ValidationGroup="Eliminar" Visible="False"></asp:RegularExpressionValidator>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+            <%--Botones--%>
+            <div class="panel">
+                <div class="text-center">
+                    <div class="form-group">
+                        <asp:Button ID="NuevoButton" runat="server" Text="Nuevo" class="btn btn-primary"/>
+                        <asp:Button ID="GuardarButton" runat="server" Text="Guardar" class="btn btn-success" ValidationGroup="Guardar"  />
+                        <asp:Button ID="EliminarButton" runat="server" Text="Eliminar" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+    </div>
 </asp:Content>
